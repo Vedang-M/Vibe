@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe Quiz Master - GitHub Deployment Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 2rem;
+        }
+        
+        .section {
+            margin-bottom: 2rem;
+        }
+        
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+        
+        .step-box {
+            background: #f5f7fa;
+            border-left: 4px solid #667eea;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 4px;
+        }
+        
+        .step-box h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+        
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+        
+        .code-block code {
+            display: block;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+        
+        .success {
+            background: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .warning {
+            background: #fff3cd;
+            color: #856404;
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+            border-left: 4px solid #17a2b8;
+        }
+        
+        .checklist {
+            list-style: none;
+            margin: 1rem 0;
+        }
+        
+        .checklist li {
+            padding: 0.5rem 0;
+            margin-left: 2rem;
+        }
+        
+        .checklist li:before {
+            content: "✓ ";
+            color: #28a745;
+            font-weight: bold;
+            margin-left: -2rem;
+            display: inline-block;
+            width: 2rem;
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 1rem 0;
+        }
+        
+        .column-box {
+            background: #f5f7fa;
+            padding: 1.5rem;
+            border-radius: 4px;
+            border: 2px solid #e0e6ed;
+        }
+        
+        .column-box h4 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #e0e6ed;
+        }
+        
+        th {
+            background: #f5f7fa;
+            font-weight: 600;
+            color: #667eea;
+        }
+        
+        .footer {
+            background: #f5f7fa;
+            padding: 2rem;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #e0e6ed;
+        }
+        
+        .emoji {
+            font-size: 1.2rem;
+            margin-right: 0.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Vibe Quiz Master</h1>
+            <p>GitHub Deployment Guide - Get Your App Live!</p>
+        </div>
+        
+        <div class="content">
+            <!-- Quick Start -->
+            <div class="section">
+                <h2><span class="emoji">⚡</span>Quick Start (30 Seconds)</h2>
+                
+                <div class="info">
+                    <strong>Before you start:</strong> Create a free GitHub account at <strong>github.com</strong> if you don't have one.
+                </div>
+                
+                <div class="step-box">
+                    <h3>Step 1: Create GitHub Repository</h3>
+                    <ul class="checklist">
+                        <li>Go to <span class="highlight">https://github.com/new</span></li>
+                        <li>Name: <span class="highlight">Vibe</span></li>
+                        <li>Public: <span class="highlight">Yes</span></li>
+                        <li>Click <span class="highlight">Create repository</span></li>
+                        <li>Copy the URL shown (like <span class="highlight">https://github.com/YOUR-USERNAME/Vibe.git</span>)</li>
+                    </ul>
+                </div>
+                
+                <div class="step-box">
+                    <h3>Step 2: Open Terminal & Run Commands</h3>
+                    <div class="code-block"><code>cd /Users/vedangmendhurwar/Downloads/Vibe
+
+git init
+git add .
+git commit -m "Vibe Quiz Master v1.0"
+git remote add origin https://github.com/YOUR-USERNAME/Vibe.git
+git branch -M main
+git push -u origin main</code></div>
+                    <div class="warning">
+                        <strong>Replace</strong> <span class="highlight">YOUR-USERNAME</span> with your actual GitHub username!
+                    </div>
+                </div>
+                
+                <div class="step-box">
+                    <h3>Step 3: Authentication</h3>
+                    <p style="margin-bottom: 0.5rem;">GitHub will ask for a password. Use a <strong>Personal Access Token</strong> (not your password):</p>
+                    <ol style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <li>Go to <span class="highlight">https://github.com/settings/tokens</span></li>
+                        <li>Click "Generate new token" → "Generate new token (classic)"</li>
+                        <li>Name: <span class="highlight">Vibe Deployment</span></li>
+                        <li>Select: <span class="highlight">repo</span> scope</li>
+                        <li>Click "Generate token"</li>
+                        <li>Copy and paste when Git asks</li>
+                    </ol>
+                </div>
+                
+                <div class="step-box">
+                    <h3>Step 4: Enable GitHub Pages</h3>
+                    <ul class="checklist">
+                        <li>Go to your repo: <span class="highlight">https://github.com/YOUR-USERNAME/Vibe</span></li>
+                        <li>Click <span class="highlight">Settings</span> (top right)</li>
+                        <li>Click <span class="highlight">Pages</span> (left sidebar)</li>
+                        <li>Source: <span class="highlight">Deploy from a branch</span></li>
+                        <li>Branch: <span class="highlight">main</span></li>
+                        <li>Folder: <span class="highlight">/ (root)</span></li>
+                        <li>Click <span class="highlight">Save</span></li>
+                    </ul>
+                </div>
+                
+                <div class="success">
+                    <strong>✓ Done!</strong> Your site will be live at:<br>
+                    <strong style="font-size: 1.1rem;">https://YOUR-USERNAME.github.io/Vibe/</strong><br>
+                    (Wait 1-2 minutes for GitHub to deploy)
+                </div>
+            </div>
+            
+            <!-- Detailed Steps -->
+            <div class="section">
+                <h2><span class="emoji">📝</span>Detailed Step-by-Step Guide</h2>
+                
+                <div class="step-box">
+                    <h3>1️⃣ Create GitHub Repository</h3>
+                    <p>Visit <span class="highlight">https://github.com/new</span> and fill in:</p>
+                    <table>
+                        <tr>
+                            <th>Field</th>
+                            <th>Value</th>
+                        </tr>
+                        <tr>
+                            <td>Repository name</td>
+                            <td><span class="highlight">Vibe</span></td>
+                        </tr>
+                        <tr>
+                            <td>Description</td>
+                            <td>Native online quiz app with PDF extraction</td>
+                        </tr>
+                        <tr>
+                            <td>Visibility</td>
+                            <td><span class="highlight">Public</span></td>
+                        </tr>
+                        <tr>
+                            <td>Initialize with README</td>
+                            <td><span class="highlight">No</span> (we have one)</td>
+                        </tr>
+                    </table>
+                    <p style="margin-top: 1rem;">Click <strong>Create repository</strong>. GitHub shows your repository URL.</p>
+                </div>
+                
+                <div class="step-box">
+                    <h3>2️⃣ Initialize Git Locally</h3>
+                    <p>Open Terminal (⌘ + Space, type "Terminal"):</p>
+                    <div class="code-block"><code>cd /Users/vedangmendhurwar/Downloads/Vibe
+git init</code></div>
+                </div>
+                
+                <div class="step-box">
+                    <h3>3️⃣ Add All Files</h3>
+                    <div class="code-block"><code>git add .</code></div>
+                </div>
+                
+                <div class="step-box">
+                    <h3>4️⃣ Create Commit</h3>
+                    <div class="code-block"><code>git commit -m "Initial commit: Vibe Quiz Master v1.0"</code></div>
+                </div>
+                
+                <div class="step-box">
+                    <h3>5️⃣ Connect to GitHub</h3>
+                    <p>Replace <span class="highlight">YOUR-USERNAME</span> with your GitHub username:</p>
+                    <div class="code-block"><code>git remote add origin https://github.com/YOUR-USERNAME/Vibe.git</code></div>
+                    <p>Verify it worked:</p>
+                    <div class="code-block"><code>git remote -v</code></div>
+                </div>
+                
+                <div class="step-box">
+                    <h3>6️⃣ Push to GitHub</h3>
+                    <div class="code-block"><code>git branch -M main
+git push -u origin main</code></div>
+                    <div class="warning">
+                        <strong>Note:</strong> Git will ask for a password. Use your Personal Access Token (not your GitHub password).
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Authentication -->
+            <div class="section">
+                <h2><span class="emoji">🔐</span>Authentication Methods</h2>
+                
+                <div class="two-column">
+                    <div class="column-box">
+                        <h4>✓ Personal Access Token (Recommended)</h4>
+                        <ol>
+                            <li>Visit <span class="highlight">github.com/settings/tokens</span></li>
+                            <li>Click "Generate new token"</li>
+                            <li>Name: "Vibe Deployment"</li>
+                            <li>Select <span class="highlight">repo</span> scope</li>
+                            <li>Generate & copy token</li>
+                            <li>Paste when Git asks for password</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="column-box">
+                        <h4>✓ GitHub CLI (Easiest)</h4>
+                        <div class="code-block"><code>brew install gh</code></div>
+                        <div class="code-block"><code>gh auth login</code></div>
+                        <p>Follow the prompts and choose HTTPS when asked.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- GitHub Pages -->
+            <div class="section">
+                <h2><span class="emoji">🌐</span>Enable GitHub Pages</h2>
+                
+                <div class="step-box">
+                    <h3>Make Your App Live</h3>
+                    <ol>
+                        <li>Go to <span class="highlight">https://github.com/YOUR-USERNAME/Vibe</span></li>
+                        <li>Click <span class="highlight">Settings</span> (top right)</li>
+                        <li>Scroll down, click <span class="highlight">Pages</span> (left sidebar)</li>
+                        <li>Under "Source", select <span class="highlight">Deploy from a branch</span></li>
+                        <li>Branch: <span class="highlight">main</span></li>
+                        <li>Folder: <span class="highlight">/ (root)</span></li>
+                        <li>Click <span class="highlight">Save</span></li>
+                    </ol>
+                    <p style="margin-top: 1rem;">GitHub will show: <span class="highlight">Your site is published at https://YOUR-USERNAME.github.io/Vibe/</span></p>
+                </div>
+                
+                <div class="success">
+                    <strong>✓ Success!</strong> Your app is now live on the internet! 🎉<br>
+                    Share the link: <strong style="font-size: 1rem;">https://YOUR-USERNAME.github.io/Vibe/</strong>
+                </div>
+            </div>
+            
+            <!-- Troubleshooting -->
+            <div class="section">
+                <h2><span class="emoji">🔧</span>Troubleshooting</h2>
+                
+                <table>
+                    <tr>
+                        <th>Problem</th>
+                        <th>Solution</th>
+                    </tr>
+                    <tr>
+                        <td>"fatal: not a git repository"</td>
+                        <td><span class="highlight">cd /Users/vedangmendhurwar/Downloads/Vibe</span> then <span class="highlight">git init</span></td>
+                    </tr>
+                    <tr>
+                        <td>"Authentication failed"</td>
+                        <td>Use Personal Access Token instead of password. See "Authentication Methods" section above.</td>
+                    </tr>
+                    <tr>
+                        <td>Site not showing after enabling Pages</td>
+                        <td>Wait 2-3 minutes. Check that <span class="highlight">index.html</span> exists and Pages is set to "root" folder.</td>
+                    </tr>
+                    <tr>
+                        <td>Changes not showing on live site</td>
+                        <td>Run <span class="highlight">git add . && git commit -m "update" && git push origin main</span></td>
+                    </tr>
+                    <tr>
+                        <td>"refused to merge unrelated histories"</td>
+                        <td><span class="highlight">git pull origin main --allow-unrelated-histories</span></td>
+                    </tr>
+                </table>
+            </div>
+            
+            <!-- After Going Live -->
+            <div class="section">
+                <h2><span class="emoji">✨</span>After Going Live</h2>
+                
+                <div class="step-box">
+                    <h3>Update Your Code</h3>
+                    <p>To push updates after making changes:</p>
+                    <div class="code-block"><code>cd /Users/vedangmendhurwar/Downloads/Vibe
+git add .
+git commit -m "Your update message"
+git push origin main</code></div>
+                    <p style="margin-top: 0.5rem;">Your changes will be live in 1-2 minutes!</p>
+                </div>
+                
+                <div class="step-box">
+                    <h3>Share Your App</h3>
+                    <ul class="checklist">
+                        <li>Send link to friends: <span class="highlight">https://YOUR-USERNAME.github.io/Vibe/</span></li>
+                        <li>Add to your portfolio/resume</li>
+                        <li>Share on social media</li>
+                        <li>Create a GitHub issue for feature requests</li>
+                    </ul>
+                </div>
+                
+                <div class="step-box">
+                    <h3>Monitor & Improve</h3>
+                    <ul class="checklist">
+                        <li>Test your app on mobile and desktop</li>
+                        <li>Get feedback from users</li>
+                        <li>Fix bugs and add features</li>
+                        <li>Keep the code clean and documented</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- What's Included -->
+            <div class="section">
+                <h2><span class="emoji">📦</span>What Gets Deployed</h2>
+                
+                <div class="info">
+                    All these files are ready to push to GitHub:
+                </div>
+                
+                <ul class="checklist">
+                    <li><span class="highlight">index.html</span> - Main application</li>
+                    <li><span class="highlight">app.js</span> - All logic (PDF extraction, question generation, gamification)</li>
+                    <li><span class="highlight">styles.css</span> - Beautiful UI with 50+ animations</li>
+                    <li><span class="highlight">404.html</span> - GitHub Pages routing fallback</li>
+                    <li><span class="highlight">package.json</span> - Project metadata</li>
+                    <li><span class="highlight">.gitignore</span> - Git configuration</li>
+                    <li><span class="highlight">README.md</span> - Documentation</li>
+                    <li><span class="highlight">FEATURES.md</span> - Technical details</li>
+                    <li>And more...</li>
+                </ul>
+                
+                <div class="success">
+                    <strong>✓ No build process needed!</strong> Your app is pure HTML/CSS/JavaScript and works instantly.
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p><strong>Vibe Quiz Master</strong> | GitHub Deployment Guide</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">Made with ❤️ for educators and students</p>
+            <p style="margin-top: 1rem; font-size: 0.85rem; color: #999;">Questions? Check the GitHub Docs: <strong>docs.github.com</strong></p>
+        </div>
+    </div>
+</body>
+</html>

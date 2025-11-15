@@ -1,0 +1,19 @@
+{
+  "name": "vibe-quiz-master",
+  "version": "1.0.0",
+  "description": "Interactive online quiz web application with PDF support, multiple quiz types, and gamification",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/Vibe.git"
+  },
+  "keywords": [
+    "quiz",
+    "education",
+    "gamification",
+    "pdf",
+    "interactive",
+    "learning"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}

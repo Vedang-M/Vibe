@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe - Online Quiz Master</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="container">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-content">
+                <h1 class="logo">🎯 Vibe Quiz Master</h1>
+                <div class="nav-stats">
+                    <span class="stat-badge">Score: <span id="navScore">0</span></span>
+                    <span class="stat-badge">Level: <span id="navLevel">1</span></span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Landing Page -->
+            <section id="landing" class="page active">
+                <div class="landing-container">
+                    <div class="hero-section">
+                        <h2 class="hero-title">Welcome to Vibe Quiz Master</h2>
+                        <p class="hero-subtitle">Test your knowledge with AI-generated quizzes from PDFs</p>
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <span class="feature-icon">📄</span>
+                                <h3>PDF Upload</h3>
+                                <p>Upload any PDF and generate quizzes instantly</p>
+                            </div>
+                            <div class="feature-card">
+                                <span class="feature-icon">🎨</span>
+                                <h3>Multiple Formats</h3>
+                                <p>MCQ, Flashcards, Coding & Numericals</p>
+                            </div>
+                            <div class="feature-card">
+                                <span class="feature-icon">🏆</span>
+                                <h3>Gamification</h3>
+                                <p>Earn badges, streaks & leaderboard ranks</p>
+                            </div>
+                            <div class="feature-card">
+                                <span class="feature-icon">⚡</span>
+                                <h3>Instant Feedback</h3>
+                                <p>Get real-time corrections and explanations</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary btn-large" onclick="goToPage('upload')">Get Started</button>
+                </div>
+            </section>
+
+            <!-- PDF Upload Page -->
+            <section id="upload" class="page">
+                <div class="upload-container">
+                    <div class="upload-header">
+                        <h2>Upload Your PDF</h2>
+                        <p>Extract content and generate custom quizzes</p>
+                    </div>
+
+                    <div class="upload-box" id="uploadBox">
+                        <div class="upload-icon">📄</div>
+                        <h3>Drag & drop your PDF here</h3>
+                        <p>or</p>
+                        <input type="file" id="pdfInput" accept=".pdf" style="display: none;">
+                        <button class="btn btn-secondary" onclick="document.getElementById('pdfInput').click()">Browse Files</button>
+                    </div>
+
+                    <div id="extractedContent" style="display: none;" class="extracted-section">
+                        <h3>Extracted Content Preview</h3>
+                        <div id="contentPreview" class="content-preview"></div>
+                        <div id="topicSelection" style="display: none; margin-top: 1rem;">
+                            <h4>Select Topics</h4>
+                            <p style="color:#666; font-size:0.95rem;">Choose which topics you want the quiz to focus on (we extracted these from the PDF):</p>
+                            <div id="topicList" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.5rem; margin-top:0.5rem;"></div>
+                            <div style="margin-top:0.75rem; display:flex; gap:0.5rem;">
+                                <button class="btn btn-outline" onclick="selectTopTopics()">Auto-select Top</button>
+                                <button class="btn btn-primary" onclick="collectSelectedTopicsAndContinue()">Continue to Quiz Setup</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button class="btn btn-outline" onclick="goToPage('landing')">Back</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quiz Setup Page -->
+            <section id="quizSetup" class="page">
+                <div class="setup-container">
+                    <h2>Configure Your Quiz</h2>
+                    
+                    <div class="setup-form">
+                        <div class="form-group">
+                            <label>Quiz Type</label>
+                            <div class="option-grid">
+                                <label class="option-card">
+                                    <input type="radio" name="quizType" value="mcq" checked>
+                                    <div class="option-content">
+                                        <span class="option-icon">❓</span>
+                                        <span>Multiple Choice</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="quizType" value="flashcard">
+                                    <div class="option-content">
+                                        <span class="option-icon">🃏</span>
+                                        <span>Flashcards</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="quizType" value="coding">
+                                    <div class="option-content">
+                                        <span class="option-icon">💻</span>
+                                        <span>Coding Challenge</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="quizType" value="numerical">
+                                    <div class="option-content">
+                                        <span class="option-icon">🔢</span>
+                                        <span>Numerical Problems</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="difficulty">Difficulty Level</label>
+                            <select id="difficulty">
+                                <option value="easy">Easy</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="hard">Hard</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="numQuestions">Number of Questions</label>
+                            <input type="range" id="numQuestions" min="5" max="50" value="10" class="slider">
+                            <span id="questionCount" class="slider-value">10</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="timeLimit">Time Limit (minutes)</label>
+                            <input type="number" id="timeLimit" min="1" max="120" value="15" class="input">
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button class="btn btn-outline" onclick="goToPage('upload')">Back</button>
+                        <button class="btn btn-primary" onclick="startQuiz()">Start Quiz</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quiz Page -->
+            <section id="quiz" class="page">
+                <div class="quiz-header">
+                    <div class="quiz-progress">
+                        <span id="questionNumber">1</span> / <span id="totalQuestions">10</span>
+                    </div>
+                    <div class="timer" id="timer">15:00</div>
+                    <div class="quiz-score">
+                        <span>Score: <span id="quizScore">0</span></span>
+                    </div>
+                </div>
+
+                <div class="quiz-container">
+                    <!-- MCQ Quiz -->
+                    <div id="mcqQuiz" class="quiz-type active">
+                        <div id="mcqContent" class="question-content"></div>
+                    </div>
+
+                    <!-- Flashcard Quiz -->
+                    <div id="flashcardQuiz" class="quiz-type">
+                        <div id="flashcardContent" class="flashcard-container"></div>
+                    </div>
+
+                    <!-- Coding Quiz -->
+                    <div id="codingQuiz" class="quiz-type">
+                        <div id="codingContent" class="coding-container"></div>
+                    </div>
+
+                    <!-- Numerical Quiz -->
+                    <div id="numericalQuiz" class="quiz-type">
+                        <div id="numericalContent" class="numerical-container"></div>
+                    </div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button class="btn btn-outline" id="prevBtn" onclick="previousQuestion()" style="display: none;">← Previous</button>
+                    <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()">Next →</button>
+                    <button class="btn btn-danger" id="submitBtn" onclick="submitQuiz()" style="display: none;">Submit Quiz</button>
+                </div>
+            </section>
+
+            <!-- Results Page -->
+            <section id="results" class="page">
+                <div class="results-container">
+                    <div class="results-header">
+                        <h2 class="results-title">Quiz Complete! 🎉</h2>
+                    </div>
+
+                    <div class="score-display">
+                        <div class="score-circle">
+                            <span class="score-number" id="finalScore">0</span>
+                            <span class="score-label">%</span>
+                        </div>
+                    </div>
+
+                    <div class="results-stats">
+                        <div class="stat">
+                            <span class="stat-label">Correct</span>
+                            <span class="stat-value" id="correctCount">0</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Incorrect</span>
+                            <span class="stat-value" id="incorrectCount">0</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Time Taken</span>
+                            <span class="stat-value" id="timeTaken">0:00</span>
+                        </div>
+                    </div>
+
+                    <div id="achievementBox" class="achievement-box"></div>
+
+                    <div id="reviewSection" class="review-section"></div>
+
+                    <div class="button-group">
+                        <button class="btn btn-outline" onclick="goToPage('landing')">Home</button>
+                        <button class="btn btn-secondary" onclick="viewLeaderboard()">Leaderboard</button>
+                        <button class="btn btn-primary" onclick="retakeQuiz()">Retake Quiz</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Leaderboard Page -->
+            <section id="leaderboard" class="page">
+                <div class="leaderboard-container">
+                    <h2>Global Leaderboard 🏆</h2>
+                    <div class="leaderboard-table" id="leaderboardTable"></div>
+                    <button class="btn btn-outline" onclick="goToPage('landing')">Back</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+        <div class="spinner"></div>
+        <p>Processing your PDF...</p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <!-- compromise (open-source NLP) for in-browser topic extraction -->
+    <script src="https://unpkg.com/compromise@14.12.3/builds/compromise.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
